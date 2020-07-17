@@ -42,6 +42,30 @@ header img {
     box-shadow: 0 0 10px rgb(49, 93, 119);
 }
 
+.validate {
+    width: 90%;
+    padding: 10px;
+    margin: 0px 10px 10px 15px;
+    color: #fff;
+    background-color: orangered;
+}
+
+.success {
+    width: 90%;
+    padding: 10px;
+    margin: 0px 10px 10px 15px;
+    color: #fff;
+    background-color: green;
+}
+
+.delete-book {
+    width: 90%;
+    padding: 10px;
+    margin: 0px 10px 10px 15px;
+    color: #fff;
+    background-color: rgb(134, 19, 19);
+}
+
 .form-group label {
     display: block;
     letter-spacing: 2px;

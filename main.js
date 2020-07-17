@@ -53,6 +53,18 @@ class UI {
         }
     }
 
+    static showAlert(message, className) {
+        const div = document.createElement('div');
+        div.className = `alert ${className}`;
+        div.appendChild(document.createTextNode(message));
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#book-form');
+        container.insertBefore(div, form);
+
+        // Disappear alert in 3s
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+    }
+
     static clearFields() {
         document.querySelector('#title').value = '';
         document.querySelector('#author').value = '';
@@ -83,16 +95,26 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     const isbn = document.querySelector('#isbn').value;
     // once we get these values we want to instantiate a book from the Book Class, since it is not static we need to instantiate a book too add a book.
 
-    // Instantiate book
-    const book = new Book(title, author, isbn);
-    // console.log(book);
-    // we get a book object
+    //Validation
+    if (title === '' || author === '' || isbn === '') {
+        UI.showAlert('Please fill all the fields', 'validate');
+    } else {
 
-    // Add Book to UI
-    UI.addBookToList(book);
+        // Instantiate book
+        const book = new Book(title, author, isbn);
+        // console.log(book);
+        // we get a book object
 
-    // Clear Feilds
-    UI.clearFields();
+        // Add Book to UI
+        UI.addBookToList(book);
+
+        // Show alert message
+        UI.showAlert('Book Added', 'success');
+
+        // Clear Feilds
+        UI.clearFields();
+    }
+
 });
 
 
@@ -100,4 +122,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 document.querySelector('#book-list').addEventListener('click', (e) => {
     // console.log(e.target);
     UI.deleteBook(e.target);
+
+    // Show alert message
+    UI.showAlert('Book Removed', 'delete-book');
 });
