@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #012636;
+    color: #fff;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+header {
+    max-width: 400px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+header img {
+    width: 130px;
+    box-shadow: 0 0 10px rgb(49, 93, 119);
+}
+
+.form-group label {
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 15px;
+    display: block;
+    color: rgb(218, 236, 252);
+}
+
+.form-control {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 90%;
+    height: 30px;
+    margin: 0px 10px 10px 15px;
+    padding-left: 5px;
+    font-size: 20px;
+    color: rgb(0, 37, 29);
+}
+
+.form-control:hover,
+.form-control:focus {
+    border: 1px solid rgb(0, 145, 60);
+    box-shadow: 0 0 8px rgb(0, 145, 60);
+}
+
+.btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 90%;
+    margin: 25px 10px 10px 15px;
+    padding: 8px 0;
+    font-size: 20px;
+    background-color: rgb(49, 93, 119);
+    color: rgb(218, 236, 252);
+}
+
+.btn:hover,
+.btn:focus {
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgb(46, 46, 46);
+    color: #fff;
+}
+
+table {
+    background-color: rgb(0, 145, 60);
+    width: 90%;
+    margin: 25px 10px 10px 15px;
+}
+
+tbody {
+    background-color: #fff;
+    color: #012636;
+    font-size: 20px;
+}

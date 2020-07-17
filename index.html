@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="favicon/ico" href="images/book-favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>BookList</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="./images/book.png" alt="Book" />
+            <h1>Book List</h1>
+        </header>
+        <form id="book-form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input id="title" type="text" class="form-control">
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input id="author" type="text" class="form-control">
+                    <div class="form-group">
+                        <label for="isbn">ISBN#</label>
+                        <input id="isbn" type="text" class="form-control">
+                    </div>
+                    <input type="submit" value="Add Book" class="btn btn-primary">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN#</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="book-list">
+
+                        </tbody>
+                    </table>
+        </form>
+        </div>
+        <script src="main.js"></script>
+</body>
+
+</html>
