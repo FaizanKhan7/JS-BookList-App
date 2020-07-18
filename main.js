@@ -8,23 +8,24 @@ class Book {
     }
 }
 
-// UI class: Handle UI Tasks - so, anything in the user interface, when a book is displayed on the table or removes or we show an alert, we use UI class.
+// UI class: Handle UI Tasks - so, anything in the user interface, when a book is displayed on the table or removed or we show an alert, we use UI class.
 
 class UI {
     static displayBooks() {
-        const StoredBooks = [{
-                title: 'Zero To One',
-                author: 'Peter Thiel',
-                isbn: '9783593424941'
-            },
-            {
-                title: 'The Monk Who Sold His Ferrari',
-                author: 'Robin Sharma',
-                isbn: '9780694520503'
-            }
-        ];
+        const books = Store.getBooks();
 
-        const books = StoredBooks;
+        // const StoredBooks = [{
+        //         title: 'Zero To One',
+        //         author: 'Peter Thiel',
+        //         isbn: '9783593424941'
+        //     },
+        //     {
+        //         title: 'The Monk Who Sold His Ferrari',
+        //         author: 'Robin Sharma',
+        //         isbn: '9780694520503'
+        //     }
+        // ];
+        // const books = StoredBooks;
 
         books.forEach((book) => UI.addBookToList(book));
         // just to reiterate we have the hardcoded data(storedBooks)array, where we are setting that array to books and then we're looping through and calling the method and passing the book. 
@@ -74,7 +75,38 @@ class UI {
 
 
 //Store class - which takes care of storage(LocalStorage within the browser)
+/* local storage stores basically the key-value pairs.
+we'll be havving an item called books which will be a string version of the entire array of books. we can't store objects in local storage, it has to be a string. so before we add to local storage we have to stringify it and then to pull it out we have to parse it. */
+class Store {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
 
+        return books;
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBook(isbn) {
+        const books = Store.getBooks();
+
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
 
 // Events 
 
@@ -108,6 +140,9 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
         // Add Book to UI
         UI.addBookToList(book);
 
+        // Add book to LocalStorage
+        Store.addBook(book);
+
         // Show alert message
         UI.showAlert('Book Added', 'success');
 
@@ -121,7 +156,13 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 // Event: Remove a Book
 document.querySelector('#book-list').addEventListener('click', (e) => {
     // console.log(e.target);
+
+    // Remove book from UI
     UI.deleteBook(e.target);
+
+    // Remove book from store
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+    // this will give us the isbn, which will be passed in to remove books.
 
     // Show alert message
     UI.showAlert('Book Removed', 'delete-book');
